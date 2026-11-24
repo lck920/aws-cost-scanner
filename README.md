@@ -1,10 +1,32 @@
 # AWS Cost & Unused Resource Scanner
 
-![CI](https://github.com/<your-username>/aws-cost-scanner/actions/workflows/ci.yml/badge.svg)
+[![CI](https://github.com/lck920/aws-cost-scanner/actions/workflows/ci.yml/badge.svg)](https://github.com/lck920/aws-cost-scanner/actions/workflows/ci.yml)
+![Python](https://img.shields.io/badge/python-3.12-blue?logo=python&logoColor=white)
+![Terraform](https://img.shields.io/badge/IaC-Terraform-7B42BC?logo=terraform&logoColor=white)
+![AWS](https://img.shields.io/badge/AWS-Lambda%20%7C%20SNS%20%7C%20S3-FF9900?logo=amazonwebservices&logoColor=white)
 
-A serverless job that scans every enabled AWS region once a day for resources that cost money but do nothing, estimates the monthly waste, and emails a report. An optional delete mode removes what it finds, after a 7-day grace period.
+> Forgotten AWS resources quietly add to your bill: an Elastic IP left behind after a test, a volume from a deleted instance, a load balancer for a staging site nobody uses.
+> This scanner finds them across **every enabled region** every morning and emails you what they're costing.
+
+**Highlights**
+- 🔍 Checks for 7 kinds of waste, scanning all enabled regions in parallel
+- 💰 Estimates the monthly cost of each finding, with the total in the email subject
+- 🛡️ **Dry run by default.** Optional delete mode waits a 7-day grace period, and IAM only allows deleting resources the scanner has already tagged
+- 🏗️ 100% Terraform. `terraform destroy` leaves nothing behind
+- ✅ Tested with pytest + moto. CI runs tests, `terraform validate` and a checkov security scan
+- 🆓 Runs within the AWS free tier
 
 **Stack:** Python 3.12 · AWS Lambda · EventBridge Scheduler · SNS · S3 · CloudWatch · IAM · Terraform · pytest + moto · GitHub Actions
+
+## Quick start
+
+```bash
+cd terraform
+terraform init
+terraform apply -var="email=you@example.com"   # then click the confirmation link AWS emails you
+```
+
+Full instructions are in [Setup](#setup) below.
 
 ## What it detects
 
@@ -52,13 +74,17 @@ The full JSON report is saved to S3 ([sample](docs/sample-report.json)). Both sa
 
 ### Screenshots
 
-<!-- Replace these with your own screenshots after deploying -->
+_Screenshots coming soon._
+
+<!-- After deploying: save screenshots to docs/screenshots/, delete the line above, and remove these comment markers.
 | | |
 |---|---|
 | ![Email report](docs/screenshots/email.png) | ![S3 reports](docs/screenshots/s3.png) |
 | *Daily email report* | *JSON reports in S3* |
 | ![Lambda logs](docs/screenshots/logs.png) | ![Terraform apply](docs/screenshots/terraform.png) |
 | *CloudWatch logs* | *`terraform apply` output* |
+-->
+
 
 ## Setup
 
