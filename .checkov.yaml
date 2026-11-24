@@ -1,0 +1,18 @@
+# Checks skipped on purpose. Each one either costs money (this project stays in free tier)
+# or adds nothing for a single daily job that only stores its own reports.
+skip-check:
+  - CKV_AWS_145  # S3 KMS encryption: customer KMS key is $1/mo; SSE-S3 (AES256) is already on
+  - CKV_AWS_158  # Log group KMS: same, $1/mo per key
+  - CKV_AWS_173  # Lambda env var KMS: env vars hold only a bucket name and topic ARN, no secrets
+  - CKV_AWS_26   # SNS encryption: CloudWatch alarms can't publish to a topic using the AWS-managed key
+  - CKV_AWS_297  # Scheduler CMK: same KMS cost
+  - CKV_AWS_18   # S3 access logging: needs a second bucket; reports are written only by this Lambda
+  - CKV_AWS_21   # S3 versioning: reports are write-once and expire after 90 days
+  - CKV_AWS_144  # S3 cross-region replication: doubles storage for a regenerable daily report
+  - CKV2_AWS_62  # S3 event notifications: nothing consumes them
+  - CKV_AWS_117  # Lambda in VPC: would need a NAT gateway (~$45/mo) to reach AWS APIs
+  - CKV_AWS_115  # Reserved concurrency: new accounts have a limit of 10 and AWS rejects any reservation
+  - CKV_AWS_116  # DLQ: Scheduler already retries; the CloudWatch alarm reports failures
+  - CKV_AWS_272  # Code signing: overkill for a one-file personal project
+  - CKV_AWS_50   # X-Ray: one daily run; CloudWatch logs are enough
+  - CKV_AWS_338  # 1-year log retention: 14 days keeps log storage free

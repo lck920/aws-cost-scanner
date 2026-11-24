@@ -1,0 +1,18 @@
+ESTIMATED MONTHLY WASTE: $34.53
+Scanned 3 regions in 2.7s · Mode: DRY RUN (nothing deleted)
+
+── Unattached EBS volumes (1) ── $10.00/mo
+  ap-southeast-1  vol-40842664553c82975  size_gib=100 volume_type=gp2  $10.00  [none (dry run)]
+
+── Unassociated Elastic IPs (2) ── $7.30/mo
+  ap-southeast-1  eipalloc-52b9ffe96eed8be5d  public_ip=127.226.112.114  $3.65  [none (dry run)]
+  us-east-1  eipalloc-5b9e2f70b426d2e39  public_ip=127.15.82.234  $3.65  [none (dry run)]
+
+── Stopped EC2 instances (EBS cost only) (1) ── $0.80/mo
+  ap-southeast-1  i-eab7b64f3c3ef6597  instance_type=t3.medium volumes=['vol-83235d81594d89a65']  $0.80  [none (dry run)]
+
+── Load balancers with no targets (1) ── $16.43/mo
+  eu-west-1  arn:aws:elasticloadbalancing:eu-west-1:123456789012:loadbalancer/app/old-staging-alb/b3e50c66c267d0ce  name=old-staging-alb lb_type=application  $16.43  [none (dry run)]
+
+Prices are approximate (us-east-1 on-demand), not your actual bill.
+Full report: s3://cost-scanner-reports-123456789012/reports/2026-11-24T110312Z.json

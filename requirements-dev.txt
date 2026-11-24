@@ -1,0 +1,4 @@
+# Local dev + tests only. The Lambda itself needs nothing: boto3 ships with the runtime.
+boto3
+moto[ec2,s3,sns,elb,elbv2,cloudwatch]>=5
+pytest

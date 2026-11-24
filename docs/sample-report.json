@@ -1,0 +1,71 @@
+{
+  "scanned_at": "2026-11-24T11:03:12.407934+00:00",
+  "dry_run": true,
+  "regions_scanned": 3,
+  "duration_s": 2.7,
+  "total_monthly_usd": 34.53,
+  "s3_location": "cost-scanner-reports-123456789012/reports/2026-11-24T110312Z.json",
+  "findings": [
+    {
+      "type": "load_balancer",
+      "region": "eu-west-1",
+      "id": "arn:aws:elasticloadbalancing:eu-west-1:123456789012:loadbalancer/app/old-staging-alb/b3e50c66c267d0ce",
+      "monthly_usd": 16.43,
+      "tags": {},
+      "detail": {
+        "name": "old-staging-alb",
+        "lb_type": "application"
+      },
+      "action": "none (dry run)"
+    },
+    {
+      "type": "ebs_volume",
+      "region": "ap-southeast-1",
+      "id": "vol-40842664553c82975",
+      "monthly_usd": 10.0,
+      "tags": {},
+      "detail": {
+        "size_gib": 100,
+        "volume_type": "gp2"
+      },
+      "action": "none (dry run)"
+    },
+    {
+      "type": "elastic_ip",
+      "region": "ap-southeast-1",
+      "id": "eipalloc-52b9ffe96eed8be5d",
+      "monthly_usd": 3.65,
+      "tags": {},
+      "detail": {
+        "public_ip": "127.226.112.114"
+      },
+      "action": "none (dry run)"
+    },
+    {
+      "type": "elastic_ip",
+      "region": "us-east-1",
+      "id": "eipalloc-5b9e2f70b426d2e39",
+      "monthly_usd": 3.65,
+      "tags": {},
+      "detail": {
+        "public_ip": "127.15.82.234"
+      },
+      "action": "none (dry run)"
+    },
+    {
+      "type": "stopped_instance",
+      "region": "ap-southeast-1",
+      "id": "i-eab7b64f3c3ef6597",
+      "monthly_usd": 0.8,
+      "tags": {},
+      "detail": {
+        "instance_type": "t3.medium",
+        "volumes": [
+          "vol-83235d81594d89a65"
+        ]
+      },
+      "action": "none (dry run)"
+    }
+  ],
+  "errors": []
+}
